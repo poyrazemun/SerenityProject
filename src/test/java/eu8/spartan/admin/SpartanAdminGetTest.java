@@ -2,8 +2,10 @@ package eu8.spartan.admin;
 
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
+import net.serenitybdd.rest.Ensure;
 import net.serenitybdd.rest.SerenityRest;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.baseURI;
@@ -59,6 +61,32 @@ public class SpartanAdminGetTest {
         //use jsonpath with lastResponse and get the name
         String name = lastResponse().jsonPath().getString("name");
         System.out.println("name = " + name);
+    }
+
+    @DisplayName("GET request with Serenity Assertion way")
+    @Test
+    public void getOneSpartanAssertion(){
+
+        given()
+                .accept(ContentType.JSON)
+                .and()
+                .auth().basic("admin","admin")
+                .pathParam("id",15)
+                .when()
+                .get("/api/spartans/{id}");
+
+        //Serenity way of assertion
+
+        Ensure.that("Status code is 200", validatableResponse -> validatableResponse.statusCode(201) );
+
+        Ensure.that("Content-type is JSON",vRes -> vRes.contentType(ContentType.JSON));
+
+        Ensure.that("Id is 15", vRes -> vRes.body("id",is(15)));
+
+
+
+
+
     }
 
 
