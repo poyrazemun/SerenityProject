@@ -1,10 +1,12 @@
 package eu8.spartan;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utilities.ConfigReader;
 
 public class ConfigDemoTest {
 
+    @Disabled
     @Test
     public void test1(){
         System.out.println(ConfigReader.getProperty("serenity.project.name"));
