@@ -7,15 +7,15 @@ import java.util.Map;
 
 public class SpartanUtils {
 
-    public static Map<String,Object> postSpartan(){
+    public static Map<String, Object> getRandomSpartanMap() {
 
         Faker faker = new Faker();
 
-        Map<String,Object> Spartan = new LinkedHashMap<>();
+        Map<String, Object> Spartan = new LinkedHashMap<>();
 
-        Spartan.put("name",faker.name().firstName());
-        Spartan.put("gender","Female");
-        Spartan.put("phone",5556656583l);
+        Spartan.put("name", faker.name().firstName());
+        Spartan.put("gender", faker.demographic().sex());
+        Spartan.put("phone", 5556656583l);
 
         return Spartan;
 
